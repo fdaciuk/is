@@ -11,11 +11,14 @@
     "lint:watch": "gulp",
     "lint:fix": "standard --fix",
     "pub": "npm publish --access=public",
-    "preversion": "yarn test",
+    "build": "babel src -o dist/is.min.js --ignore=*.test.js --minified",
+    "preversion": "yarn test && yarn build",
     "postversion": "yarn pub"
   },
   "standard": {
-    "globals": ["test"]
+    "globals": [
+      "test"
+    ]
   },
   "repository": {
     "type": "git",
@@ -32,7 +35,9 @@
   },
   "homepage": "https://github.com/fdaciuk/is#readme",
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-jest": "^18.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
