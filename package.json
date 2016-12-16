@@ -1,6 +1,6 @@
 {
   "name": "@fdaciuk/is",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Typechecker in Vanilla JS",
   "main": "dist/is.min.js",
   "scripts": {
