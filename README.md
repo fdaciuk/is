@@ -37,6 +37,9 @@ console.log(is('array', [])) // true
 
 ```js
 import is from '@fdaciuk/is'
+
+const isString = is('string')
+console.log(isString('daciuk')) // true
 ```
 
 **Method of `window` object**
