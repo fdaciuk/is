@@ -13,7 +13,7 @@
     "pub": "npm publish --access=public",
     "build": "babel src -o dist/is.min.js --ignore=*.test.js --minified",
     "preversion": "yarn test && yarn build",
-    "postversion": "yarn pub"
+    "postversion": "npm run pub"
   },
   "standard": {
     "globals": [
