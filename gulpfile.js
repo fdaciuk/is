@@ -9,5 +9,5 @@ gulp.task('lint', (cb) => {
 })
 
 gulp.task('default', ['lint'], () => {
-  gulp.watch('src/**/*.js', ['lint'])
+  gulp.watch(['src/**/*.js', 'gulpfile.js'], ['lint'])
 })
