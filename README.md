@@ -55,7 +55,7 @@ is(typeToTest)(value)
 
 ## Contributing
 
-Check CONTRIBUTING.md
+Check [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
