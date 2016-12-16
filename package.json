@@ -12,7 +12,8 @@
     "lint:fix": "standard --fix",
     "pub": "npm publish --access=public",
     "build": "babel src -o dist/is.min.js --ignore=*.test.js --minified",
-    "preversion": "yarn test && yarn build",
+    "git:update": "git checkout master && git merge dev && git push origin master --tags && git checkout dev",
+    "preversion": "yarn test && yarn build && yarn git:update",
     "postversion": "npm run pub"
   },
   "standard": {
