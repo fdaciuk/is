@@ -1,0 +1,44 @@
+{
+  "name": "@fdaciuk/is",
+  "version": "0.0.0",
+  "description": "Typechecker in Vanilla JS",
+  "main": "dist/is.min.js",
+  "scripts": {
+    "test": "yarn lint && yarn test:once",
+    "test:once": "jest --coverage --no-cache --env=node",
+    "test:watch": "yarn test:once -- --watch",
+    "lint": "standard --verbose | snazzy",
+    "lint:watch": "gulp",
+    "lint:fix": "standard --fix",
+    "pub": "npm publish --access=public",
+    "preversion": "yarn test",
+    "postversion": "yarn pub"
+  },
+  "standard": {
+    "globals": ["test"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdaciuk/is.git"
+  },
+  "keywords": [
+    "type",
+    "type checker"
+  ],
+  "author": "Fernando Daciuk - @fdaciuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fdaciuk/is/issues"
+  },
+  "homepage": "https://github.com/fdaciuk/is#readme",
+  "devDependencies": {
+    "babel-jest": "^18.0.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "jest-cli": "^18.0.0",
+    "snazzy": "^5.0.0",
+    "standard": "^8.6.0"
+  }
+}
