@@ -4,7 +4,7 @@
   "description": "Typechecker in Vanilla JS",
   "main": "dist/is.min.js",
   "scripts": {
-    "test": "yarn lint && yarn test:once",
+    "test": "yarn lint && yarn test:once -- --forceExit",
     "test:once": "jest --coverage --no-cache --env=node",
     "test:watch": "yarn test:once -- --watch",
     "lint": "standard --verbose | snazzy",
