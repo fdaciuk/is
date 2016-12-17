@@ -4,3 +4,5 @@ CONTRIBUTING.md
 gulpfile.js
 .travis.yml
 yarn.lock
+coverage
+*.log
