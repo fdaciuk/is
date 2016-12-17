@@ -4,10 +4,13 @@ const gulp = require('gulp')
 const { spawn } = require('child_process')
 const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 
-const exec = (command) => new Promise((resolve, reject) => {
+const exec = (command, cb) => new Promise((resolve, reject) => {
   const [program, ...params] = command.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
-  cmd.on('close', resolve)
+  cmd.on('close', () => {
+    resolve()
+    if (cb) { cb() }
+  })
   cmd.on('error', reject)
 })
 
@@ -20,13 +23,14 @@ const test = () => exec('yarn test')
 const build = () => exec('yarn build')
 const add = () => exec('git add .')
 const commit = () => exec('git commit -S -m "Minifying"')
+const finish = (cb) => exec('echo "finish"', cb)
 gulp.task('preversion', (cb) => {
   return Promise.resolve()
     .then(test)
     .then(build)
     .then(add)
     .then(commit)
-    .then(cb)
+    .then(finish(cb))
     .catch(handleError)
 })
 
@@ -36,7 +40,7 @@ gulp.task('postversion', (cb) => {
   return Promise.resolve()
     .then(publish)
     .then(update)
-    .then(cb)
+    .then(finish(cb))
     .catch(handleError)
 })
 
