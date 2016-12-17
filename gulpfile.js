@@ -46,7 +46,6 @@ gulp.task('preversion', () => {
     .catch(handleError)
 })
 
-
 const publish = () => exec('npm run pub')
 const update = () => exec('yarn git:update')
 gulp.task('postversion', () => {
