@@ -35,13 +35,14 @@ gulp.task('preversion', () => {
 
 const createAndApplyBanner = () => new Promise((resolve) => {
   const pkg = require('./package.json')
+  const filePath = 'dist/is.min.js'
   const bannerFile = fs.readFileSync('banner.txt')
-  const file = fs.readFileSync('dist/is.min.js')
+  const file = fs.readFileSync(filePath)
   const filename = 'is.min.js'
   const banner = gutil.template(bannerFile, { pkg, file, filename })
+  const content = banner + file
 
-  fs.writeFileSync('dist/is.min.js', banner + file)
-  resolve()
+  fs.writeFile(filePath, content, () => resolve())
 })
 
 const commitBanner = () => exec('git commit -S -m "Update banner"')
