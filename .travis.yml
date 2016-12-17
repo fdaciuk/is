@@ -2,10 +2,6 @@ language: node_js
 node_js:
   - "7.2"
 
-before_install:
-  - "npm i -g codeclimate-test-reporter"
-  - "npm i coveralls"
-
 addons:
   code_climate:
     repo_token: 949c5bf75e8c5337d43d8eb6fdc854f532d641fe5783133ffb5182ed898ff68a
@@ -13,5 +9,5 @@ addons:
     repo_token: IzB4maYUGE45cnX3boSWXvvJsbiy59rH1
 
 after_script:
-  - "cat ./coverage/lcov.info | codeclimate"
+  - "cat ./coverage/lcov.info | ./node_modules/codeclimate-test-reporter/bin/codeclimate.js"
   - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

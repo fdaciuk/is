@@ -12,8 +12,7 @@ const exec = (command) => new Promise((resolve, reject) => {
 })
 
 const handleError = (error) => {
-  console.log('error:', error)
-  process.exit(1)
+  throw new Error(error)
 }
 
 const test = () => exec('yarn test')
