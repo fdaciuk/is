@@ -23,8 +23,7 @@ const test = () => exec('yarn test')
 const build = () => exec('yarn build')
 const add = () => exec('git add .')
 const commit = () => exec('git commit -S -m "Minifying"')
-const finish = (cb) => exec('echo "finish"', cb)
-gulp.task('preversion', (cb) => {
+gulp.task('preversion', () => {
   return Promise.resolve()
     .then(test)
     .then(build)
@@ -35,7 +34,7 @@ gulp.task('preversion', (cb) => {
 
 const publish = () => exec('npm run pub')
 const update = () => exec('yarn git:update')
-gulp.task('postversion', (cb) => {
+gulp.task('postversion', () => {
   return Promise.resolve()
     .then(publish)
     .then(update)
