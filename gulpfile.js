@@ -53,9 +53,9 @@ gulp.task('postversion', () => {
     .then(createAndApplyBanner)
     .then(add)
     .then(commitBanner)
-    // .then(publish)
-    // .then(update)
-    // .catch(handleError)
+    .then(publish)
+    .then(update)
+    .catch(handleError)
 })
 
 gulp.task('lint', (cb) => exec('yarn lint').then(cb))
