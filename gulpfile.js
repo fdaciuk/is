@@ -20,6 +20,7 @@ const handleError = (error) => {
 }
 
 const test = () => exec('yarn test')
+const fixLint = () => exec('yarn lint:fix')
 const build = () => exec('yarn build')
 
 const createAndApplyBanner = () => new Promise((resolve) => {
@@ -37,6 +38,7 @@ const commit = () => exec('git commit -S -m "Minifying"')
 gulp.task('preversion', () => {
   return Promise.resolve()
     .then(test)
+    .then(fixLint)
     .then(build)
     .then(createAndApplyBanner)
     .then(add)
