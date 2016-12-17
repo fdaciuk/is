@@ -24,6 +24,6 @@ gulp.task('postversion', (cb) => {
   exec(publish).then(update).then(cb)
 })
 
-gulp.task('lint', createTaskWithCommand('yarn lint'))
+gulp.task('lint', (cb) => exec('yarn lint').then(cb))
 gulp.task('watch', () => gulp.watch(filesToWatch, ['lint']))
 gulp.task('default', ['lint', 'watch'])
