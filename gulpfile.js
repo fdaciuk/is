@@ -11,14 +11,18 @@ const exec = (command) => new Promise((resolve, reject) => {
   cmd.on('error', reject)
 })
 
-const handleError = (error) => console.log(error)
+const handleError = (error) => {
+  console.log(error)
+  process.exit(1)
+}
 
 const test = () => exec('yarn test')
 const build = () => exec('yarn build')
 const add = () => exec('git add .')
 const commit = () => exec('git commit -S -m "Minifying"')
 gulp.task('preversion', (cb) => {
-  return exec(test)
+  return Promise.resolve()
+    .then(test)
     .then(build)
     .then(add)
     .then(commit)
@@ -29,7 +33,8 @@ gulp.task('preversion', (cb) => {
 const publish = () => exec('npm run pub')
 const update = () => exec('yarn git:update')
 gulp.task('postversion', (cb) => {
-  return exec(publish)
+  return Promise.resolve()
+    .then(publish)
     .then(update)
     .then(cb)
     .catch(handleError)
