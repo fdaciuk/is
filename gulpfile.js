@@ -25,13 +25,10 @@ const build = () => exec('yarn build')
 const createAndApplyBanner = () => new Promise((resolve) => {
   const bannerFile = fs.readFileSync('banner.txt')
   const file = fs.readFileSync('dist/is.min.js')
-  const banner = gutil.template(bannerFile, {
-    file: isMin,
-    filename: 'is.min.js',
-    pkg
-  })
-  const content = `${banner}\n${file}`
-  fs.writeFileSync('dist/is.min.js', content)
+  const filename = 'is.min.js'
+  const banner = gutil.template(bannerFile, { pkg, file, filename })
+
+  fs.writeFileSync('dist/is.min.js', banner + file)
   resolve()
 })
 
