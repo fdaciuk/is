@@ -1,0 +1,8 @@
+/**!
+ * <%= pkg.name %> - v<%= pkg.version %>
+ * <%= pkg.description %>
+ * <%= pkg.homepage %>
+
+ * <%= new Date( Date.now() ) %>
+ * <%= pkg.license %> (c) <%= pkg.author %>
+*/
