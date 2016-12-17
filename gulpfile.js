@@ -52,7 +52,7 @@ gulp.task('postversion', () => {
   return Promise.resolve()
     .then(createAndApplyBanner)
     .then(add)
-    // .then(commitBanner)
+    .then(commitBanner)
     // .then(publish)
     // .then(update)
     // .catch(handleError)
