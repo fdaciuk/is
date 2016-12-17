@@ -6,3 +6,4 @@ gulpfile.js
 yarn.lock
 coverage
 *.log
+*.test.js
