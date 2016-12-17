@@ -7,7 +7,8 @@ const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 const exec = (command) => new Promise((resolve, reject) => {
   const [program, ...params] = command.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
-  cmd.on('close', () => resolve())
+  cmd.on('close', resolve)
+  cmd.on('error', reject)
 })
 
 const test = () => exec('yarn test')
