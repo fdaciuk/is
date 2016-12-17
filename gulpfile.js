@@ -5,9 +5,7 @@ const { spawn } = require('child_process')
 const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 
 const exec = (commandLine, cb) => {
-  const command = commandLine.split(' ')
-  const program = command[0]
-  const params = command.slice(1)
+  const [program, ...params] = commandLine.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
   cmd.on('close', () => cb())
 }
@@ -25,7 +23,5 @@ gulp.task('update', createTaskWithCommand('yarn git:update'))
 gulp.task('postversion', ['publish', 'update'])
 
 gulp.task('lint', createTaskWithCommand('yarn lint'))
-
 gulp.task('watch', () => gulp.watch(filesToWatch, ['lint']))
-
 gulp.task('default', ['lint', 'watch'])
