@@ -30,7 +30,6 @@ gulp.task('preversion', (cb) => {
     .then(build)
     .then(add)
     .then(commit)
-    .then(finish(cb))
     .catch(handleError)
 })
 
@@ -40,7 +39,6 @@ gulp.task('postversion', (cb) => {
   return Promise.resolve()
     .then(publish)
     .then(update)
-    .then(finish(cb))
     .catch(handleError)
 })
 
