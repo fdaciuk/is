@@ -4,8 +4,8 @@ const gulp = require('gulp')
 const { spawn } = require('child_process')
 const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 
-const exec = (commandLine, cb) => {
-  const [program, ...params] = commandLine.split(' ')
+const exec = (command, cb) => {
+  const [program, ...params] = command.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
   cmd.on('close', () => cb())
 }
