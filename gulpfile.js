@@ -4,15 +4,10 @@ const gulp = require('gulp')
 const { spawn } = require('child_process')
 const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 
-const maybeExecute = (cb) => cb && cb()
-
-const exec = (command, cb) => new Promise((resolve, reject) => {
+const exec = (command) => new Promise((resolve, reject) => {
   const [program, ...params] = command.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
-  cmd.on('close', () => {
-    resolve()
-    maybeExecute(cb)
-  })
+  cmd.on('close', resolve)
   cmd.on('error', reject)
 })
 
