@@ -4,23 +4,25 @@ const gulp = require('gulp')
 const { spawn } = require('child_process')
 const filesToWatch = ['src/**/*.js', 'gulpfile.js']
 
-const exec = (command, cb) => {
+const exec = (command) => new Promise((resolve, reject) => {
   const [program, ...params] = command.split(' ')
   const cmd = spawn(program, params, { stdio: 'inherit' })
-  cmd.on('close', () => cb())
-}
+  cmd.on('close', () => resolve())
+})
 
-const createTaskWithCommand = (command) => (cb) => exec(command, cb)
+const test = () => exec('yarn test')
+const build = () => exec('yarn build')
+const add = () => exec('git add .')
+const commit = () => exec('git commit -S -m "Minifying"')
+gulp.task('preversion', (cb) => {
+  exec(test).then(build).then(add).then(commit).then(cb)
+})
 
-gulp.task('test', createTaskWithCommand('yarn test'))
-gulp.task('build', createTaskWithCommand('yarn build'))
-gulp.task('add', createTaskWithCommand('git add .'))
-gulp.task('commit', createTaskWithCommand('git commit -S -m "Minifying"'))
-gulp.task('preversion', ['test', 'build', 'add', 'commit'])
-
-gulp.task('publish', createTaskWithCommand('npm run pub'))
-gulp.task('update', createTaskWithCommand('yarn git:update'))
-gulp.task('postversion', ['publish', 'update'])
+const publish = () => exec('npm run pub')
+const update = () => exec('yarn git:update')
+gulp.task('postversion', (cb) => {
+  exec(publish).then(update).then(cb)
+})
 
 gulp.task('lint', createTaskWithCommand('yarn lint'))
 gulp.task('watch', () => gulp.watch(filesToWatch, ['lint']))
