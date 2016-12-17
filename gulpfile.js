@@ -45,7 +45,7 @@ const createAndApplyBanner = () => new Promise((resolve) => {
   fs.writeFile(filePath, content, () => resolve())
 })
 
-const commitBanner = () => exec('git commit -S -m "Update banner"')
+const commitBanner = () => exec('git commit -S -m "Banner"')
 const publish = () => exec('npm run pub')
 const update = () => exec('yarn git:update')
 gulp.task('postversion', () => {
