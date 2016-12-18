@@ -34,7 +34,7 @@ gulp.task('preversion', () => {
 })
 
 const createAndApplyBanner = () => new Promise((resolve) => {
-  const pkg = require('./package.json')
+  const pkg = JSON.parse(fs.readFileSync('./package.json'))
   const filePath = 'dist/is.min.js'
   const bannerFile = fs.readFileSync('banner.txt')
   const file = fs.readFileSync(filePath)
