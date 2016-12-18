@@ -71,3 +71,8 @@ test('typeOf(null) should return "null"', () => {
 test('typeOf(undefined) should return "undefined"', () => {
   expect(typeOf(undefined)).to.be.equal('undefined')
 })
+
+test('typeOf(new String("hey")) should return "string"', () => {
+  // eslint-disable-next-line no-new-wrappers
+  expect(typeOf(new String('hey'))).to.be.equal('string')
+})
