@@ -58,6 +58,6 @@ gulp.task('postversion', () => {
     .catch(handleError)
 })
 
-gulp.task('lint', (cb) => exec('yarn lint').then(cb))
+gulp.task('lint', () => exec('yarn lint'))
 gulp.task('watch', () => gulp.watch(filesToWatch, ['lint']))
 gulp.task('default', ['lint', 'watch'])

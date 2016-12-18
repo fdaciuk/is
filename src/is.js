@@ -12,7 +12,11 @@ const is = (...params) => {
   }
 
   const type = typeToTest.replace(/^\w/, (l) => l.toUpperCase())
-  return Object.prototype.toString.call(value) === `[object ${type}]`
+  return rawType(value) === `[object ${type}]`
+}
+
+const typeOf = (value) => {
+  return rawType(value).replace(/^\[object (\w+)]$/, '$1').toLowerCase()
 }
 
 function isString (value) {
@@ -23,4 +27,9 @@ function hasValue (params) {
   return params.length === 2
 }
 
+function rawType (value) {
+  return Object.prototype.toString.call(value)
+}
+
+export { typeOf }
 export default is

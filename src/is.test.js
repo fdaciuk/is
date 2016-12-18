@@ -1,7 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
-import is from './is'
+import is, { typeOf } from './is'
 
 test('is should be a function', () => {
   expect(is).to.be.a('function')
@@ -46,4 +46,28 @@ test('is() should throw an TypeError: "typeToTest must be a string"', () => {
   } catch (e) {
     expect(e.message).to.be.equal('typeToTest must be a string')
   }
+})
+
+test('typeOf should be a function', () => {
+  expect(typeOf).to.be.a('function')
+})
+
+test('typeOf(123) should return "number"', () => {
+  expect(typeOf(123)).to.be.equal('number')
+})
+
+test('typeOf({}) should return "object"', () => {
+  expect(typeOf({})).to.be.equal('object')
+})
+
+test('typeOf([]) should return "array"', () => {
+  expect(typeOf([])).to.be.equal('array')
+})
+
+test('typeOf(null) should return "null"', () => {
+  expect(typeOf(null)).to.be.equal('null')
+})
+
+test('typeOf(undefined) should return "undefined"', () => {
+  expect(typeOf(undefined)).to.be.equal('undefined')
 })
