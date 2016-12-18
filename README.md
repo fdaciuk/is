@@ -9,6 +9,30 @@
 [![License][license-image]][license-url]
 [![CONTRIBUTING][contributing-image]][contributing-url]
 
+## Why?
+
+Because type checking in JS is hard. See some examples:
+
+```js
+console.log(typeof 1) // 'number'
+console.log(typeof 'javascript') // 'string'
+console.log(typeof {}) // 'object'
+console.log(typeof []) // 'object' wat?
+console.log(typeof null) // 'object' wat? wat?
+console.log(typeof new String('js')) // 'object' :|
+```
+
+That's why `@fdaciuk/is` is useful. See some examples using this library in ES2015:
+
+```js
+import is from '@fdaciuk/is'
+
+console.log(is('number', 10)) // true
+console.log(is('object', {})) // true
+console.log(is('array', [])) // true
+console.log(is('object', [])) // false
+console.log(is('string', new String('js'))) // true (yes, 'string', not 'object')
+```
 
 ## Installation
 
@@ -62,6 +86,38 @@ console.log(window.is('number', 10)) // true
 is(typeToTest, value)
 // or
 is(typeToTest)(value)
+```
+
+## Documentation
+
+**`is`**
+
+A function that checks if a value is of a type:
+
+```js
+import is from '@fdaciuk/is'
+// or using commonjs:
+// var is = require('@fdaciuk/is').default
+
+const value = []
+
+if (is('array', value)) {
+  // do something
+}
+```
+
+**`typeOf`**
+
+A function that returns a real type of a value:
+
+```js
+import { typeOf } from '@fdaciuk/is'
+// or using commonjs:
+// var typeOf = require('@fdaciuk/is').typeOf
+
+console.log(typeOf([])) // 'array'
+console.log(typeOf(123)) // 'number'
+console.log(typeOf(new String('hey'))) // 'string', not 'object'
 ```
 
 ## Contributing
